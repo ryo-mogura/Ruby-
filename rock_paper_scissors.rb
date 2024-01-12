@@ -1,5 +1,5 @@
 
-def rock_paper_scissors
+def janken_attihoi
   # 画面表示
   puts 'ジャンケン'
   puts "0: グー, 1: チョキ, 2: パー"
@@ -17,7 +17,7 @@ def rock_paper_scissors
     exit
   else
     puts "1~3の数字を入力してください"
-    return rock_paper_scissors
+    return janken_attihoi
   end
   # 出した手の表示
   puts "あなた:#{player_hand}を出しました"
@@ -35,5 +35,34 @@ def rock_paper_scissors
     puts "敗北"
     janken_result = "lose"
   end
+
+  #あっちむいてほいの処理
+  puts "あっちむいて"
+  puts "0(上)1(下)2(右)3(左)"
+  face_direction = ["上","下","右","左"]
+  player = gets.to_i
+  player_direction = face_direction[player]
+  program = rand(4)
+  program_direction = face_direction[program]
+  puts "--------------------------------"
+  puts "あなた:#{player_direction}を出しました"
+  puts "相手：#{program_direction}を出しました"
+  puts "--------------------------------"
+  case janken_result
+  when "win","lose" #ジャンケンで勝ちまたは負けの時
+    if (player_direction == program_direction) && (janken_result == "win") #ジャンケンで勝ち、同じ方向に向いた時の処理
+      puts ("あなたの勝ちです")
+    elsif (player_direction == program_direction) && (janken_result == "lose") #ジャンケンで負け、同じ方向に向いた時の処理
+      puts ("あなたの負けです")
+    else
+      return janken_attihoi
+    end
+
+  when "draw"  #引き分けの処理
+    puts "引き分けです"
+    janken_attihoi
+  end
+
 end
-rock_paper_scissors
+
+janken_attihoi
